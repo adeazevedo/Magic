@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/rogue like run up_Animation 1_3.png-3631e47635a0f5e7aee317bf375687a8.stex"
+
+[deps]
+
+source_file="res://sprites/rogue like run up_Animation 1_3.png"
+source_md5="0bfbef60e181bb811d9961d7fa945bcc"
+
+dest_files=[ "res://.import/rogue like run up_Animation 1_3.png-3631e47635a0f5e7aee317bf375687a8.stex" ]
+dest_md5="ff07c374f82e27b73e366ab2f05e1f5f"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

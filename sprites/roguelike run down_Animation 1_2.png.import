@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/roguelike run down_Animation 1_2.png-98fa0c798d043c8231046d2d99157d1b.stex"
+
+[deps]
+
+source_file="res://sprites/roguelike run down_Animation 1_2.png"
+source_md5="b7bbfc35589c11c9c851bd96d2b32f3c"
+
+dest_files=[ "res://.import/roguelike run down_Animation 1_2.png-98fa0c798d043c8231046d2d99157d1b.stex" ]
+dest_md5="298a4d25bfb0a713af7a718de043ccc6"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

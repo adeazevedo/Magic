@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/rogue like attack_Animation 1_1.png-a43834f10894749a60bfabb9889cb301.stex"
+
+[deps]
+
+source_file="res://sprites/rogue like attack_Animation 1_1.png"
+source_md5="422c559ff3382e836201c1d993b9afdb"
+
+dest_files=[ "res://.import/rogue like attack_Animation 1_1.png-a43834f10894749a60bfabb9889cb301.stex" ]
+dest_md5="14e647afec3b1a059c70ac1f97da25b9"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

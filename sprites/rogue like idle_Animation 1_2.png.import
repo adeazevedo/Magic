@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/rogue like idle_Animation 1_2.png-9c83056526f174f6c5442fdf707e6a06.stex"
+
+[deps]
+
+source_file="res://sprites/rogue like idle_Animation 1_2.png"
+source_md5="14b940a44b4bce15bb09b93ce04e7787"
+
+dest_files=[ "res://.import/rogue like idle_Animation 1_2.png-9c83056526f174f6c5442fdf707e6a06.stex" ]
+dest_md5="fdf447b076a3f1ed444c3d99c0e031c5"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=false
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
