@@ -1,7 +1,7 @@
 
 extends Node
 
-var FireballPreload = preload("res://Fireball.tscn")
+var FireballPreload = preload("res://player/skills/Fireball.tscn")
 
 export(float) var cooldown = 1
 export(float) var mana_cost = 100
@@ -12,12 +12,13 @@ var casted = false
 var my_player
 
 func _physics_process(delta):
-	if casted:
-		cooldown_count += delta
+	if !casted: return
 
-		if cooldown_count > cooldown:
-			casted = false
-			cooldown_count = 0
+	if cooldown_count >= cooldown:
+		casted = false
+		cooldown_count = 0
+
+	cooldown_count += delta
 
 func cast():
 	if !casted:

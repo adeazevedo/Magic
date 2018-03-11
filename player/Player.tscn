@@ -1,6 +1,6 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/rogue like idle_Animation 1_1.png" type="Texture" id=2]
 [ext_resource path="res://sprites/rogue like idle_Animation 1_0.png" type="Texture" id=3]
 [ext_resource path="res://sprites/roguelike run down_Animation 1_0.png" type="Texture" id=4]
@@ -19,7 +19,9 @@
 [ext_resource path="res://sprites/rogue like run up_Animation 1_3.png" type="Texture" id=17]
 [ext_resource path="res://Anim.gd" type="Script" id=18]
 [ext_resource path="res://MagicBook.gd" type="Script" id=19]
-[ext_resource path="res://FireballCommand.gd" type="Script" id=20]
+[ext_resource path="res://player/FireballCommand.gd" type="Script" id=20]
+[ext_resource path="res://player/FireDashCommand.gd" type="Script" id=21]
+[ext_resource path="res://player/FirePunchCommand.gd" type="Script" id=22]
 
 [sub_resource type="Animation" id=1]
 
@@ -166,7 +168,7 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 11, 17 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = true
 collision_layer = 1
@@ -201,6 +203,7 @@ script = ExtResource( 18 )
 
 position = Vector2( 0, -1 )
 shape = SubResource( 6 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="MagicBook" type="Node" parent="." index="3"]
 
@@ -211,5 +214,18 @@ script = ExtResource( 19 )
 script = ExtResource( 20 )
 cooldown = 1
 mana_cost = 100
+
+[node name="FireDash" type="Node" parent="MagicBook" index="1"]
+
+script = ExtResource( 21 )
+length_of_dash = 130
+mana_cost = 100
+cooldown = 1
+
+[node name="FirePunch" type="Node" parent="MagicBook" index="2"]
+
+script = ExtResource( 22 )
+mana_cost = 100
+cooldown = 1
 
 
