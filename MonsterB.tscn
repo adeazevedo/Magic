@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Monster.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MonsterB.gd" type="Script" id=2]
+
+[node name="Monster" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+
+modulate = Color( 0.376239, 0.644531, 0.367584, 1 )
+
+

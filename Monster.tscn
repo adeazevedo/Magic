@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Monster.gd" type="Script" id=1]
 [ext_resource path="res://sprites/rogue like run_Animation 1_0.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://sprites/rogue like run_Animation 1_3.png" type="Texture" id=7]
 [ext_resource path="res://sprites/rogue like run_Animation 1_4.png" type="Texture" id=8]
 [ext_resource path="res://sprites/rogue like run_Animation 1_5.png" type="Texture" id=9]
+[ext_resource path="res://trait/Impulsable.tscn" type="PackedScene" id=10]
+[ext_resource path="res://trait/Damageable.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 
@@ -53,7 +55,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 11, 17 )
 
-[node name="Monster" type="KinematicBody2D"]
+[node name="Monster" type="KinematicBody2D" index="0"]
 
 input_pickable = true
 collision_layer = 1
@@ -61,6 +63,10 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
+monster_name = "Shadow"
+max_health = 100
+impulse_disable = false
+invulnarable = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -83,5 +89,9 @@ blend_times = [  ]
 
 position = Vector2( 0, -3 )
 shape = SubResource( 3 )
+
+[node name="Impulsable" parent="." index="3" instance=ExtResource( 10 )]
+
+[node name="Damageable" parent="." index="4" instance=ExtResource( 11 )]
 
 

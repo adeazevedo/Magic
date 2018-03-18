@@ -48,20 +48,29 @@ func _physics_process(delta):
 
 	move_and_collide(direction * speed * delta)
 
-	health_tick(delta)
-	mana_tick(delta)
+	health_tick()
+	mana_tick()
 
 
-func health_tick(delta):
-	health += health_regen * delta
-	health = clamp(health, 0, max_health)
-	emit_signal("health_changed", health)
+func health_tick():
+	var old_health = health
+	health = clamp(health + tick(health_regen), 0, max_health)
 
-func mana_tick (delta):
-	mana += mana_regen * delta
-	mana = clamp(mana, 0, max_mana)
-	emit_signal("mana_changed", mana)
+	if old_health != health:
+		emit_signal("health_changed", health)
 
+func mana_tick ():
+	var old_mana = mana
+	mana = clamp(mana + tick(mana_regen), 0, max_mana)
+
+	if old_mana != mana:
+		emit_signal("mana_changed", mana)
+
+func tick(regen):
+	return regen * get_physics_process_delta_time()
+
+func my_magic_dmg(mana_spent, element):
+	return calc_magic_damage(mana_spent, element, equipment_power)
 
 func calc_magic_damage (mana_spent, element, equip_power):
 	return pow(mana_spent, equip_power) * get_element_mult(element)

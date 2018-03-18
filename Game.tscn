@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://LifeBar.gd" type="Script" id=2]
 [ext_resource path="res://ManaBar.gd" type="Script" id=3]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Monster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MonsterB.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -179,5 +180,9 @@ _sections_unfolded = [ "Limit" ]
 [node name="Monster" parent="." index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 122.434, 199.975 )
+
+[node name="MonsterB" parent="." index="3" instance=ExtResource( 6 )]
+
+position = Vector2( 217, 264 )
 
 

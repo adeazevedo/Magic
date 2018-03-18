@@ -1,8 +1,8 @@
 [gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
-[ext_resource path="res://sprites/rogue like idle_Animation 1_1.png" type="Texture" id=2]
-[ext_resource path="res://sprites/rogue like idle_Animation 1_0.png" type="Texture" id=3]
+[ext_resource path="res://sprites/rogue like idle_Animation 1_0.png" type="Texture" id=2]
+[ext_resource path="res://sprites/rogue like idle_Animation 1_1.png" type="Texture" id=3]
 [ext_resource path="res://sprites/roguelike run down_Animation 1_0.png" type="Texture" id=4]
 [ext_resource path="res://sprites/roguelike run down_Animation 1_1.png" type="Texture" id=5]
 [ext_resource path="res://sprites/roguelike run down_Animation 1_2.png" type="Texture" id=6]
@@ -39,7 +39,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ), ExtResource( 2 ) ]
+"values": [ ExtResource( 2 ), ExtResource( 3 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -182,7 +182,6 @@ health_regen = 2.0
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
-flip_h = true
 
 [node name="Anim" type="AnimationPlayer" parent="." index="1"]
 
