@@ -1,0 +1,81 @@
+[gd_resource type="ParticlesMaterial" load_steps=7 format=2]
+
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 0.233227, 0.313099, 0.651757, 1 )
+colors = PoolColorArray( 1, 0.539063, 0.539063, 0.533333, 0.933594, 0.185989, 0.185989, 1, 0.902344, 0.20843, 0.116318, 1, 0.605469, 0.0685883, 0.0685883, 1, 0.175781, 0.0906372, 0.0906372, 0.733333 )
+
+[sub_resource type="GradientTexture" id=5]
+
+flags = 4
+gradient = SubResource( 4 )
+width = 2048
+
+[sub_resource type="Curve" id=6]
+
+min_value = 0.0
+max_value = 100.0
+bake_resolution = 100
+_data = [ Vector2( 0.502012, 0 ), 0.0, 267.874, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+
+flags = 4
+width = 2048
+curve = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+
+min_value = 0.0
+max_value = 7.0
+bake_resolution = 100
+_data = [ Vector2( 0.495976, 7 ), 0.0, 0.0, 0, 0, Vector2( 1, 1.68835 ), -12.6488, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+
+flags = 4
+width = 2048
+curve = SubResource( 8 )
+
+[resource]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 4, 4, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( -1, 0, 0 )
+initial_velocity = 0.0
+initial_velocity_random = 0.0
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 20.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+radial_accel_curve = SubResource( 7 )
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 5 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Radial Accel" ]
+

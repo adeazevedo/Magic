@@ -7,10 +7,10 @@ var initial_position = Vector2()
 var my_owner = null
 var dash_length = 0
 var dash_direction = Vector2()
-var dash_time = 0.3
 var element = 1
 var element_mult = 1
 var mana_spent = 0
+var dash_time = 0.3
 
 var fire_particle_length = 15.0
 

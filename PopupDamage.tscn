@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PopupDamage.gd" type="Script" id=1]
+[ext_resource path="res://UbuntuMono-R.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 12
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="PopupDamage" type="Node2D" index="0"]
+
+modulate = Color( 1, 1, 1, 0.99419 )
+position = Vector2( 0, -27.4554 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "custom_fonts" ]
+_color = Color( 1, 0.5, 0.5, 1 )
+_max_time = 0.7
+_arc_height = 35
+_arc_width = 0
+_arc_direction = "Right"
+
+[node name="Label" type="Label" parent="." index="0"]
+
+modulate = Color( 1, 0.472656, 0.472656, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_top = -8.0
+margin_right = 20.0
+margin_bottom = 7.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "100"
+align = 1
+valign = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = 1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "custom_fonts" ]
+
+

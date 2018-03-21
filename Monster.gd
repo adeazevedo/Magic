@@ -1,5 +1,6 @@
 
 extends KinematicBody2D
+var PopupDamage = preload("res://PopupDamage.tscn")
 
 export(String) var monster_name = "Shadow"
 export(float) var max_health = 100
@@ -9,9 +10,12 @@ export(bool) var invulnarable = false setget set_damage_disable
 var health = 100
 var speed = 100
 
+var dir = Vector2()
+
+signal damage_received (damage)
 
 func _physics_process (delta):
-	var dir = Vector2()
+	dir = Vector2()
 
 	if dir.x != 0:
 		$Sprite.flip_h = true if dir.x <= -1 else false
@@ -32,6 +36,12 @@ func set_damage_disable (b):
 func apply_dmg (dmg):
 	if has_node("Damageable"):
 		$Damageable.apply_dmg(dmg)
+
+		var popup_dmg = PopupDamage.instance()
+		popup_dmg.init(dmg, $HeadPosition.position)
+		add_child(popup_dmg)
+
+		emit_signal("damage_received", dmg, dir)
 
 
 ### Impulse Methods

@@ -18,8 +18,8 @@
 [ext_resource path="res://sprites/rogue like run up_Animation 1_2.png" type="Texture" id=16]
 [ext_resource path="res://sprites/rogue like run up_Animation 1_3.png" type="Texture" id=17]
 [ext_resource path="res://Anim.gd" type="Script" id=18]
-[ext_resource path="res://MagicBook.gd" type="Script" id=19]
-[ext_resource path="res://player/FireballCommand.gd" type="Script" id=20]
+[ext_resource path="res://SkillList.gd" type="Script" id=19]
+[ext_resource path="res://player/skills/Fireball.tscn" type="PackedScene" id=20]
 [ext_resource path="res://player/FireDashCommand.gd" type="Script" id=21]
 [ext_resource path="res://player/FirePunchCommand.gd" type="Script" id=22]
 
@@ -204,24 +204,20 @@ position = Vector2( 0, -1 )
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="MagicBook" type="Node" parent="." index="3"]
+[node name="SkillList" type="Node" parent="." index="3"]
 
 script = ExtResource( 19 )
 
-[node name="Fireball" type="Node" parent="MagicBook" index="0"]
+[node name="Fireball" parent="SkillList" index="0" instance=ExtResource( 20 )]
 
-script = ExtResource( 20 )
-cooldown = 1
-mana_cost = 100
-
-[node name="FireDash" type="Node" parent="MagicBook" index="1"]
+[node name="FireDash" type="Node" parent="SkillList" index="1"]
 
 script = ExtResource( 21 )
 length_of_dash = 130
 mana_cost = 100
 cooldown = 1
 
-[node name="FirePunch" type="Node" parent="MagicBook" index="2"]
+[node name="FirePunch" type="Node" parent="SkillList" index="2"]
 
 script = ExtResource( 22 )
 mana_cost = 100

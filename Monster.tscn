@@ -94,4 +94,8 @@ shape = SubResource( 3 )
 
 [node name="Damageable" parent="." index="4" instance=ExtResource( 11 )]
 
+[node name="HeadPosition" type="Position2D" parent="." index="5"]
+
+position = Vector2( 0, -19 )
+
 

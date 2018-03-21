@@ -29,7 +29,12 @@ func smooth_start_N (x, n):
 func smooth_end_N (x, n):
 	return flip( pow(flip(x), n) )
 
+# 4 * (x - 0.5) ^ 2
+func parabola (x):
+	return 4 * square(x - 0.5)
 
+func inverse_parabola (x):
+	return flip(parabola(x))
 
 
 # HELPERS FUNCS

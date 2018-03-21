@@ -22,11 +22,13 @@ Easing="*res://Easing.gd"
 [debug]
 
 settings/fps/force_fps=60
+settings/visual_script/max_call_stack=2048
 
 [display]
 
 window/size/width=950
 window/size/height=575
+window/vsync/use_vsync=false
 
 [importer_defaults]
 

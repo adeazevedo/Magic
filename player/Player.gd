@@ -1,9 +1,6 @@
 
 extends Node2D
 
-signal mana_changed(value)
-signal health_changed(value)
-
 enum Magic { FIRE, WATER, ELETRIC, PHYSICAL }
 
 # Mana and health regen per second
@@ -26,20 +23,23 @@ var equipment_power = 1
 
 var direction = Vector2()
 
+signal mana_changed(value)
+signal health_changed(value)
 
-func _physics_process(delta):
+
+func _physics_process (delta):
 	direction = Vector2()
 	direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 
 	if Input.is_action_pressed("skill1"):
-		$MagicBook.cast_fireball()
+		$SkillList/Fireball.cast()
 
 	elif Input.is_action_pressed("skill2"):
-		$MagicBook.cast_firedash()
+		$SkillList.cast_firedash()
 
 	elif Input.is_action_pressed("skill3"):
-		$MagicBook.cast_fire_punch()
+		$SkillList.cast_fire_punch()
 
 	if direction.x != 0:
 		$Sprite.flip_h = (direction.x <= -1)
@@ -52,7 +52,7 @@ func _physics_process(delta):
 	mana_tick()
 
 
-func health_tick():
+func health_tick ():
 	var old_health = health
 	health = clamp(health + tick(health_regen), 0, max_health)
 
@@ -66,26 +66,26 @@ func mana_tick ():
 	if old_mana != mana:
 		emit_signal("mana_changed", mana)
 
-func tick(regen):
+func tick (regen):
 	return regen * get_physics_process_delta_time()
 
-func my_magic_dmg(mana_spent, element):
+func my_magic_dmg (mana_spent, element):
 	return calc_magic_damage(mana_spent, element, equipment_power)
 
 func calc_magic_damage (mana_spent, element, equip_power):
 	return pow(mana_spent, equip_power) * get_element_mult(element)
 
-func get_mana():
+func get_mana ():
 	return mana
 
-func get_equipment_power():
+func get_equipment_power ():
 	return equipment_power
 
 func get_element_mult (element):
 	return element_mult[element]
 
-func get_health():
+func get_health ():
 	return health
 
-func get_face():
+func get_face ():
 	return -1 if $Sprite.flip_h == true else 1
