@@ -3,6 +3,7 @@ extends Node2D
 
 signal destroyed
 
+export(int, "Fire", "Water", "Electric", "Physical") var element = 0
 export(float) var travel_speed = 400
 export(float) var max_impulse_force = 200
 
@@ -11,8 +12,7 @@ var initial_pos = Vector2()
 var direction = Vector2()
 var angle
 var mana_spent = 0
-var fire_mult = 1
-var element = 0
+var element_multiplier = 1
 
 
 func _ready():
@@ -26,9 +26,8 @@ func _physics_process (delta):
 func init (player):
 	my_owner = player
 	initial_pos = player.global_position
-	element = player.FIRE
 	mana_spent = player.mana
-	fire_mult = player.get_element_mult(element)
+	element_multiplier = my_owner.get_element_mult(element)
 
 	direction.x = player.direction.x if player.direction != Vector2() else player.get_face()
 	direction.y = player.direction.y
@@ -51,16 +50,20 @@ func reset_particles_settings ():
 
 # Destroy command is triggered by Anim node
 func hit (obj):
-	if obj == my_owner: return
+	if obj.is_in_group("player"): return
 
 	play_hit_anim()
 
-	var dmg = calc_damage()
-	$Damager.apply_dmg(obj, dmg)
-
+	# Damage and impulse force varies as far the fireball travels
 	var distance_from_initial_pos = floor(position.distance_to(initial_pos) / 75) + 1
 	var force = max_impulse_force / distance_from_initial_pos * mana_spent / my_owner.max_mana
-	$Impulser.impulse(obj, direction, force)
+
+	$Damager.damage = calc_damage()
+	$Damager.impulse_force = force
+	$Damager.impulse_direction = direction
+
+	if obj.has_method("apply_dmg"):
+		obj.apply_dmg($Damager)
 
 
 func play_hit_anim():
@@ -69,8 +72,7 @@ func play_hit_anim():
 	# Destroy command is triggered by Anim node
 
 func calc_damage():
-	var power = my_owner.equipment_power
-	var magic_dmg = my_owner.calc_magic_damage(mana_spent, element, power)
+	var magic_dmg = my_owner.calc_magic_damage(mana_spent, element, my_owner.equipment_power)
 
 	# a cada 75 pixels = 1 (uma) unidade de distancia. Usada para diminuir o dano conforme mais tempo viaja
 	var distance_from_initial_pos = floor(position.distance_to(initial_pos) / 75) + 1

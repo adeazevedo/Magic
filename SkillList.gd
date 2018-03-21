@@ -1,7 +1,7 @@
 
 extends Node
 
-func get_player():
+func get_owner():
 	return get_parent()
 
 func get_skill(skill_name):

@@ -82,7 +82,7 @@ skill4=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":""
 
 [layer_names]
 
-2d_physics/layer_1="player"
+2d_physics/layer_1="player/monsters"
 
 [rendering]
 

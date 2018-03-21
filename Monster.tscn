@@ -55,7 +55,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 11, 17 )
 
-[node name="Monster" type="KinematicBody2D" index="0"]
+[node name="Monster" type="KinematicBody2D"]
 
 input_pickable = true
 collision_layer = 1
@@ -66,7 +66,6 @@ _sections_unfolded = [ "Collision" ]
 monster_name = "Shadow"
 max_health = 100
 impulse_disable = false
-invulnarable = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player/skills/FireballInstance.gd" type="Script" id=1]
-[ext_resource path="res://player/skills/fireball_particlesmaterial.tres" type="Material" id=2]
-[ext_resource path="res://trait/Damager.tscn" type="PackedScene" id=3]
-[ext_resource path="res://trait/Impulser.tscn" type="PackedScene" id=4]
+[ext_resource path="res://trait/Damager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/skills/fireball_particlesmaterial.tres" type="Material" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -237,7 +236,7 @@ tracks/7/keys = {
 custom_solver_bias = 0.0
 radius = 8.01756
 
-[node name="Instance" type="Area2D" index="0"]
+[node name="Fireball Instance" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -247,10 +246,13 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+element = 0
 travel_speed = 400
 max_impulse_force = 200
 
-[node name="AnimPlayer" type="AnimationPlayer" parent="." index="0"]
+[node name="Damager" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." index="1"]
 
 root_node = NodePath("..")
 autoplay = "Cast"
@@ -263,7 +265,7 @@ anims/Normal = SubResource( 3 )
 next/Normal = "Cast"
 blend_times = [  ]
 
-[node name="Particles" type="Particles2D" parent="." index="1"]
+[node name="Particles" type="Particles2D" parent="." index="2"]
 
 position = Vector2( 2, 0 )
 emitting = true
@@ -279,26 +281,19 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = ExtResource( 2 )
+process_material = ExtResource( 3 )
 texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time" ]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape" type="CollisionShape2D" parent="." index="3"]
 
 shape = SubResource( 11 )
 
-[node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="." index="3"]
+[node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="." index="4"]
 
 rect = Rect2( -10, -10, 20, 20 )
-
-[node name="Damager" parent="." index="4" instance=ExtResource( 3 )]
-
-[node name="Impulser" parent="." index="5" instance=ExtResource( 4 )]
-
-disabled = false
-force = 150.0
 
 

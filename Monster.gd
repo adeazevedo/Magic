@@ -1,11 +1,8 @@
 
-extends KinematicBody2D
+extends "res://BaseMonster.gd"
 var PopupDamage = preload("res://PopupDamage.tscn")
 
-export(String) var monster_name = "Shadow"
-export(float) var max_health = 100
 export(bool) var impulse_disable = false setget set_impulse_disable
-export(bool) var invulnarable = false setget set_damage_disable
 
 var health = 100
 var speed = 100
@@ -28,20 +25,18 @@ func die():
 	print("%s died" % monster_name)
 
 ### Damage Methods
-func set_damage_disable (b):
+func apply_dmg (obj):
 	if has_node("Damageable"):
-		invulnarable = b
-		$Damageable.disabled = b
-
-func apply_dmg (dmg):
-	if has_node("Damageable"):
-		$Damageable.apply_dmg(dmg)
+		$Damageable.apply_dmg(obj)
 
 		var popup_dmg = PopupDamage.instance()
-		popup_dmg.init(dmg, $HeadPosition.position)
+		popup_dmg.init(obj.damage, $HeadPosition.position)
 		add_child(popup_dmg)
 
-		emit_signal("damage_received", dmg, dir)
+		#emit_signal("damage_received", damage)
+
+	if has_node("Impulsable"):
+		$Impulsable.apply_impulse(obj.impulse_direction, obj.impulse_force)
 
 
 ### Impulse Methods
@@ -49,7 +44,3 @@ func set_impulse_disable (b):
 	if has_node("Impulsable"):
 		impulse_disable = b
 		$Impulsable.disabled = b
-
-func apply_impulse (direction, force):
-	if has_node("Impulsable"):
-		$Impulsable.apply_impulse(direction, force)

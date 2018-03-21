@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://BaseSkill.gd" type="Script" id=1]
+
+[node name="Base Skill" type="Node"]
+
+script = ExtResource( 1 )
+disabled = false
+_skill_name = "Unknown Skill"
+_description = "Skill without description"
+_min_mana_cost = 100
+cooldown_time = 1
+skill_instance = null
+
+[node name="Cooldown" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+
