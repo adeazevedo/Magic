@@ -61,6 +61,7 @@ func hit (obj):
 	$Damager.damage = calc_damage()
 	$Damager.impulse_force = force
 	$Damager.impulse_direction = direction
+	$Damager.distance_modifier = 1 / distance_from_initial_pos
 
 	if obj.has_method("apply_dmg"):
 		obj.apply_dmg($Damager)

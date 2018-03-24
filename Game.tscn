@@ -66,7 +66,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width" ]
 
-[node name="Game" type="Node2D" index="0"]
+[node name="Game" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -185,6 +185,14 @@ position = Vector2( 122.434, 199.975 )
 [node name="MonsterB" parent="." index="3" instance=ExtResource( 6 )]
 
 position = Vector2( 217, 264 )
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+_sections_unfolded = [ "Collision" ]
+monster_name = "Shadow"
+max_health = 100
+impulse_disabled = false
 
 [node name="TestPlayer" parent="." index="4" instance=ExtResource( 7 )]
 

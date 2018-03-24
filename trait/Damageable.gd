@@ -7,13 +7,21 @@ onready var body = get_parent()
 
 
 func apply_dmg (obj):
+
 	if disabled: return
 	if body.health <= 0: return
+	if obj.damage <= 0: return
 
-	print("%s took %d damage" % [body.monster_name, obj.damage])
 	body.health -= obj.damage
-	body.health = clamp(body.health, 0, body.max_health)
+	body.emit_signal("damage_received", obj.damage)
 
-	if body.health <= 0:
-		body.die()
+	var pop_dmg
+	match obj.distance_modifier < 0.75:
+		true:  pop_dmg = PopFactory.create(PopFactory.SMALL_DAMAGE)
+		false: pop_dmg = PopFactory.create(PopFactory.NORMAL_DAMAGE)
+
+	pop_dmg.arc_direction = "Right" if obj.impulse_direction.x == 1 else "Left"
+	pop_dmg.arc_width = 10
+	pop_dmg.init(obj, $Head.position)
+	add_child(pop_dmg)
 
