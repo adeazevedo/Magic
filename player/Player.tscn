@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/rogue like idle_Animation 1_0.png" type="Texture" id=2]
@@ -20,8 +20,7 @@
 [ext_resource path="res://Anim.gd" type="Script" id=18]
 [ext_resource path="res://SkillList.gd" type="Script" id=19]
 [ext_resource path="res://player/skills/Fireball.tscn" type="PackedScene" id=20]
-[ext_resource path="res://player/FireDashCommand.gd" type="Script" id=21]
-[ext_resource path="res://player/FirePunchCommand.gd" type="Script" id=22]
+[ext_resource path="res://player/skills/FireDash.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Animation" id=1]
 
@@ -163,12 +162,13 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=6]
 
 custom_solver_bias = 0.0
-extents = Vector2( 11, 17 )
+radius = 10.0
+height = 6.0
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "player",
 ]]
 
@@ -202,7 +202,7 @@ script = ExtResource( 18 )
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." index="2"]
 
-position = Vector2( 0, -1 )
+position = Vector2( 0, 3 )
 shape = SubResource( 6 )
 _sections_unfolded = [ "Transform" ]
 
@@ -212,17 +212,14 @@ script = ExtResource( 19 )
 
 [node name="Fireball" parent="SkillList" index="0" instance=ExtResource( 20 )]
 
-[node name="FireDash" type="Node" parent="SkillList" index="1"]
+[node name="FireDash" parent="SkillList" index="1" instance=ExtResource( 21 )]
 
-script = ExtResource( 21 )
-length_of_dash = 130
-mana_cost = 100
-cooldown = 1
+[node name="Head" type="Position2D" parent="." index="4"]
 
-[node name="FirePunch" type="Node" parent="SkillList" index="2"]
+position = Vector2( 0, -18 )
 
-script = ExtResource( 22 )
-mana_cost = 100
-cooldown = 1
+[node name="Foot" type="Position2D" parent="." index="5"]
+
+position = Vector2( 0, 16 )
 
 

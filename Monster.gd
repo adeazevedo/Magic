@@ -2,7 +2,6 @@
 extends "res://BaseMonster.gd"
 
 var speed = 100
-
 var dir = Vector2()
 
 

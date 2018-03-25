@@ -2,13 +2,12 @@
 
 [ext_resource path="res://BaseSkill.gd" type="Script" id=1]
 
-[node name="Base Skill" type="Node"]
+[node name="Base Skill" type="Node" index="0"]
 
 script = ExtResource( 1 )
-disabled = false
 _skill_name = "Unknown Skill"
 _description = "Skill without description"
-_min_mana_cost = 100
+min_mana_cost = 100
 cooldown_time = 1
 skill_instance = null
 

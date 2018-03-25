@@ -231,12 +231,12 @@ tracks/7/keys = {
 "values": [ 1 ]
 }
 
-[sub_resource type="CircleShape2D" id=11]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
 radius = 8.01756
 
-[node name="Fireball Instance" type="Area2D" index="0"]
+[node name="Fireball Instance" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -290,7 +290,7 @@ _sections_unfolded = [ "Process Material", "Time" ]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="." index="3"]
 
-shape = SubResource( 11 )
+shape = SubResource( 4 )
 
 [node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="." index="4"]
 

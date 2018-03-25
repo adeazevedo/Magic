@@ -16,30 +16,37 @@ var element_multiplier = 1
 
 
 func _ready():
+
 	connect("body_entered", self, "hit")
 	$VisibilityNotifier.connect("screen_exited", self, "destroy")
 
-func _physics_process (delta):
-	global_position.x += cos(angle) * travel_speed * delta
-	global_position.y += sin(angle) * travel_speed * delta
 
-func init (player):
-	my_owner = player
-	initial_pos = player.global_position
-	mana_spent = player.mana
+func _physics_process (delta):
+
+	position.x += cos(angle) * travel_speed * delta
+	position.y += sin(angle) * travel_speed * delta
+
+
+func init (caster):
+
+	my_owner = caster
+	initial_pos = caster.global_position
+	position = initial_pos
+	mana_spent = caster.mana
 	element_multiplier = my_owner.get_element_mult(element)
 
-	direction.x = player.direction.x if player.direction != Vector2() else player.get_face()
-	direction.y = player.direction.y
+	direction.x = caster.direction.x if caster.direction != Vector2() else caster.get_face()
+	direction.y = caster.direction.y
+	direction = direction.normalized()
 
 	angle = direction.angle()
 	rotate(angle)
 
-	global_position = player.global_position
 	reset_particles_settings()
 
 
 func reset_particles_settings ():
+
 	$Particles.process_material.linear_accel = 0
 	$Particles.process_material.radial_accel = 0
 	$Particles.process_material.emission_box_extents = Vector3(4, 4, 1)
@@ -50,12 +57,13 @@ func reset_particles_settings ():
 
 # Destroy command is triggered by Anim node
 func hit (obj):
+
 	if obj.is_in_group("player"): return
 
 	play_hit_anim()
 
 	# Damage and impulse force varies as far the fireball travels
-	var distance_from_initial_pos = floor(position.distance_to(initial_pos) / 75) + 1
+	var distance_from_initial_pos = floor(initial_pos.distance_to(global_position) / 75) + 1
 	var force = max_impulse_force / distance_from_initial_pos * mana_spent / my_owner.max_mana
 
 	$Damager.damage = calc_damage()
@@ -68,19 +76,23 @@ func hit (obj):
 
 
 func play_hit_anim():
+
 	travel_speed = 50
 	$AnimPlayer.play("Hit")
 	# Destroy command is triggered by Anim node
 
+
 func calc_damage():
+
 	var magic_dmg = my_owner.calc_magic_damage(mana_spent, element, my_owner.equipment_power)
 
 	# a cada 75 pixels = 1 (uma) unidade de distancia. Usada para diminuir o dano conforme mais tempo viaja
-	var distance_from_initial_pos = floor(position.distance_to(initial_pos) / 75) + 1
+	var distance_from_initial_pos = floor(initial_pos.distance_to(global_position) / 75) + 1
 	return magic_dmg / pow(distance_from_initial_pos, 2)
 
 
 func destroy():
+
 	hide()
 	reset_particles_settings()
 	emit_signal("destroyed")

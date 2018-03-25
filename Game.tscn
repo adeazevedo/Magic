@@ -146,12 +146,16 @@ percent_visible = true
 script = ExtResource( 3 )
 _sections_unfolded = [ "Margin", "Percent", "custom_styles" ]
 
-[node name="Player" parent="." index="1" instance=ExtResource( 4 )]
+[node name="YSort" type="YSort" parent="." index="1"]
+
+sort_enabled = true
+
+[node name="Player" parent="YSort" index="0" instance=ExtResource( 4 )]
 
 position = Vector2( 281, 198 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="Camera" type="Camera2D" parent="Player" index="0"]
+[node name="Camera" type="Camera2D" parent="YSort/Player" index="0"]
 
 position = Vector2( -2.72101, 1.36 )
 anchor_mode = 1
@@ -178,23 +182,17 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Limit" ]
 
-[node name="Monster" parent="." index="2" instance=ExtResource( 5 )]
+[node name="Monster" parent="YSort" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 122.434, 199.975 )
 
-[node name="MonsterB" parent="." index="3" instance=ExtResource( 6 )]
+[node name="MonsterB" parent="." index="2" instance=ExtResource( 6 )]
 
 position = Vector2( 217, 264 )
 input_pickable = true
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
 _sections_unfolded = [ "Collision" ]
-monster_name = "Shadow"
-max_health = 100
-impulse_disabled = false
 
-[node name="TestPlayer" parent="." index="4" instance=ExtResource( 7 )]
+[node name="TestPlayer" parent="." index="3" instance=ExtResource( 7 )]
 
 position = Vector2( 214, 124 )
 
