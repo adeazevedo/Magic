@@ -35,8 +35,7 @@ func init (caster):
 	mana_spent = caster.mana
 	element_multiplier = my_owner.get_element_mult(element)
 
-	direction.x = caster.direction.x if caster.direction != Vector2() else caster.get_face()
-	direction.y = caster.direction.y
+	direction = caster.face_direction
 	direction = direction.normalized()
 
 	angle = direction.angle()

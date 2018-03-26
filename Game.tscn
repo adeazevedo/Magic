@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://LifeBar.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Monster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://MonsterB.tscn" type="PackedScene" id=6]
-[ext_resource path="res://player/TestPlayer.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -191,9 +190,5 @@ position = Vector2( 122.434, 199.975 )
 position = Vector2( 217, 264 )
 input_pickable = true
 _sections_unfolded = [ "Collision" ]
-
-[node name="TestPlayer" parent="." index="3" instance=ExtResource( 7 )]
-
-position = Vector2( 214, 124 )
 
 

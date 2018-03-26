@@ -1,5 +1,5 @@
 
-extends Node2D
+extends KinematicBody2D
 
 enum Magic { FIRE, WATER, ELETRIC, PHYSICAL }
 
@@ -8,10 +8,12 @@ export(int) var mana_regen = 33.0
 export(int) var health_regen = 2.0
 
 var max_health = 200.0
-var health = 100.0
+var health = 100.0 setget , get_health
 var max_mana = 100.0
-var mana = 0.0
-var speed = Vector2(100, 100)
+var mana = 0.0 setget , get_mana
+var speed = 100.0
+var direction = Vector2()
+var face_direction setget , get_face_direction
 
 var element_mult = {
 	FIRE: 1,
@@ -19,9 +21,8 @@ var element_mult = {
 	ELETRIC: 1,
 	PHYSICAL: 1
 }
-var equipment_power = 1
 
-var direction = Vector2()
+var equipment_power = 1
 
 signal mana_changed(value)
 signal health_changed(value)
@@ -39,10 +40,13 @@ func _physics_process (delta):
 	elif Input.is_action_pressed("skill2"):
 		$SkillList/FireDash.cast()
 
+	elif Input.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+
 	if direction.x != 0:
 		$Sprite.flip_h = (direction.x <= -1)
 
-	$Anim.play_walk(direction)
+	$Anim.choose_animation(direction)
 
 	move_and_collide(direction * speed * delta)
 
@@ -88,6 +92,11 @@ func get_mana ():
 	return mana
 
 
+func get_health ():
+
+	return health
+
+
 func get_equipment_power ():
 
 	return equipment_power
@@ -98,11 +107,10 @@ func get_element_mult (element):
 	return element_mult[element]
 
 
-func get_health ():
+func get_face_direction ():
 
-	return health
+	if direction == Vector2():
+		var h = -1 if $Sprite.flip_h else 1
+		return Vector2(h, 0)
 
-
-func get_face ():
-
-	return -1 if $Sprite.flip_h == true else 1
+	return direction

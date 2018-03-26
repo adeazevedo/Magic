@@ -7,10 +7,10 @@ path="res://.import/rogue like attack animations_attack right_0.png-6e1cd2d7315c
 [deps]
 
 source_file="res://sprites/rogue like attack animations_attack right_0.png"
-source_md5="f27a3dd2604548b0bf144b0454261b69"
+source_md5="cb01c7c564acb57a2fbe7693c8d83d53"
 
 dest_files=[ "res://.import/rogue like attack animations_attack right_0.png-6e1cd2d7315cfea449a72436cfc1846f.stex" ]
-dest_md5="0aaeaf3f150eb4374386082a482bfa35"
+dest_md5="41c4a600286d1312515b32403372c0c6"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

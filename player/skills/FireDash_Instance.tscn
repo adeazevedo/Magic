@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/skills/FireDash_Instance.gd" type="Script" id=1]
-[ext_resource path="res://sprites/fire_sprites.png" type="Texture" id=2]
+[ext_resource path="res://player/skills/FirePatch.gd" type="Script" id=2]
+[ext_resource path="res://trait/Damager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/fire_sprites.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 
@@ -27,13 +29,15 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 7, 5 )
 
-[node name="FireDash_Instance" type="Node2D" index="0"]
+[node name="FireDash_Instance" type="Node2D"]
 
 script = ExtResource( 1 )
 max_time = 0.4
 
 [node name="FirePatch" type="Area2D" parent="." index="0"]
 
+editor/display_folded = true
+visible = false
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -41,17 +45,23 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="FirePatch" index="0"]
+[node name="Damager" parent="FirePatch" index="0" instance=ExtResource( 3 )]
+
+damage = 15.0
+impulse_force = 200.0
+
+[node name="Sprite" type="Sprite" parent="FirePatch" index="1"]
 
 scale = Vector2( 0.35, 0.35 )
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 offset = Vector2( 0, -42 )
 vframes = 4
 hframes = 8
 _sections_unfolded = [ "Transform" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FirePatch" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FirePatch" index="2"]
 
 root_node = NodePath("..")
 autoplay = "idle"
@@ -61,9 +71,20 @@ playback_speed = 1.0
 anims/idle = SubResource( 1 )
 blend_times = [  ]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="FirePatch" index="2"]
+[node name="CollisionShape" type="CollisionShape2D" parent="FirePatch" index="3"]
 
 position = Vector2( 0, -3 )
 shape = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="FirePatch" index="4"]
+
+process_mode = 1
+wait_time = 1.5
+one_shot = true
+autostart = false
+
+[node name="Damager" parent="." index="1" instance=ExtResource( 3 )]
+
+impulse_force = 100.0
 
 
