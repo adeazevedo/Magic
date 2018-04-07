@@ -26,6 +26,8 @@ func _physics_process (delta):
 
 	if !casted: return
 
+	caster.disable_movement()
+	caster.direction = Vector2()
 	var collision = caster.move_and_collide(direction * speed * delta / max_time)
 	if collision:
 		apply_impulse_to_collider(collision)
@@ -45,6 +47,7 @@ func stop_dash ():
 
 	casted = false
 	time = 0
+	caster.disable_movement(false)
 
 
 var fire_count = 0.0

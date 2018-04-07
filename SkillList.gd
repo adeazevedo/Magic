@@ -12,7 +12,8 @@ func get_caster():
 func get_skill (skill_name):
 
 	for skill in get_children():
+
 		if skill.skill_name == skill_name:
 			return skill
 
-		return null
+	return null

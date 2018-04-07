@@ -1,11 +1,12 @@
 
 extends Node
 
-export(String) var _skill_name = "Unknown Skill"
+export(String) var skill_name = "Unknown Skill"
 export(String, MULTILINE) var _description = "Skill without description"
 export(float) var min_mana_cost = 100
 export(float) var cooldown_time = 1 setget set_cooldown
 export(PackedScene) var skill_instance
+var icon setget private, get_icon_sprite
 
 # Base Skill is counting that is child of SkillList Node
 onready var caster = get_parent().get_caster()
@@ -17,7 +18,7 @@ func _cast():
 	pass
 
 
-func cast():
+func cast ():
 
 	if !cooldown_is_active():
 		_cast()
@@ -27,7 +28,7 @@ func cast():
 		emit_signal("casted")
 
 
-func spent_mana():
+func spent_mana ():
 
 	if caster.has_method("get_mana"):
 		caster.mana -= min_mana_cost
@@ -51,6 +52,11 @@ func cooldown_is_active ():
 	return !$Cooldown.is_stopped()
 
 
-func private():
+func private ():
 
 	print("Private variable")
+
+
+func get_icon_sprite ():
+
+	return $Icon

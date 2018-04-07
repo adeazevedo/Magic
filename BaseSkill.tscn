@@ -5,7 +5,7 @@
 [node name="Base Skill" type="Node" index="0"]
 
 script = ExtResource( 1 )
-_skill_name = "Unknown Skill"
+skill_name = "Unknown Skill"
 _description = "Skill without description"
 min_mana_cost = 100
 cooldown_time = 1
@@ -17,5 +17,11 @@ process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
+
+[node name="Icon" type="Sprite" parent="." index="1"]
+
+visible = false
+scale = Vector2( 0.0625, 0.0625 )
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 

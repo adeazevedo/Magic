@@ -1,14 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://BaseSkill.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/skills/FireDash.gd" type="Script" id=2]
 [ext_resource path="res://player/skills/FireDash_Instance.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/icons/fire-dash.svg" type="Texture" id=4]
 
 [node name="Fire Dash" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-_skill_name = "Fire Dash"
+skill_name = "Fire Dash"
 _description = "Dash"
 skill_instance = ExtResource( 3 )
+
+[node name="Icon" parent="." index="1"]
+
+texture = ExtResource( 4 )
 
 

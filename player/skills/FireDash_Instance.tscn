@@ -29,7 +29,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 7, 5 )
 
-[node name="FireDash_Instance" type="Node2D"]
+[node name="FireDash_Instance" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 max_time = 0.4

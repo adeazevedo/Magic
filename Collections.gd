@@ -2,6 +2,7 @@
 extends Node
 
 func map_array (array, func_ref):
+
 	#if !(array is Array): return array
 	if !(func_ref is FuncRef): return array
 

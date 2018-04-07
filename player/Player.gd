@@ -8,8 +8,10 @@ export(int) var mana_regen = 33.0
 export(int) var health_regen = 2.0
 
 var max_health = 200.0
+var health_regen_mod = 1
 var health = 100.0 setget , get_health
 var max_mana = 100.0
+var mana_regen_mod = 1
 var mana = 0.0 setget , get_mana
 var speed = 100.0
 var direction = Vector2()
@@ -24,31 +26,29 @@ var element_mult = {
 
 var equipment_power = 1
 
+onready var Anim = $Anim
+onready var Controller = $KeyboardController
+onready var _Sprite = $Sprite
+
 signal mana_changed(value)
 signal health_changed(value)
 
+var current_state = "idle"
+var state_params = {}
+
+onready var state = {
+	"idle" : $FSM/Idle,
+	"walk" : $FSM/Walk,
+	"attack" : $FSM/Attack,
+	"cast" : $FSM/Cast,
+}
 
 func _physics_process (delta):
 
-	direction = Vector2()
-	direction.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
-	direction.y = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	state[current_state].execute(state_params)
 
-	if Input.is_action_pressed("skill1"):
-		$SkillList/Fireball.cast()
-
-	elif Input.is_action_pressed("skill2"):
-		$SkillList/FireDash.cast()
-
-	elif Input.is_action_pressed("ui_cancel"):
+	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-
-	if direction.x != 0:
-		$Sprite.flip_h = (direction.x <= -1)
-
-	$Anim.choose_animation(direction)
-
-	move_and_collide(direction * speed * delta)
 
 	health_tick()
 	mana_tick()
@@ -57,7 +57,7 @@ func _physics_process (delta):
 func health_tick ():
 
 	var old_health = health
-	health = clamp(health + tick(health_regen), 0, max_health)
+	health = clamp(health + tick(health_regen * health_regen_mod), 0, max_health)
 
 	if old_health != health:
 		emit_signal("health_changed", health)
@@ -66,7 +66,7 @@ func health_tick ():
 func mana_tick ():
 
 	var old_mana = mana
-	mana = clamp(mana + tick(mana_regen), 0, max_mana)
+	mana = clamp(mana + tick(mana_regen * mana_regen_mod), 0, max_mana)
 
 	if old_mana != mana:
 		emit_signal("mana_changed", mana)
@@ -109,8 +109,37 @@ func get_element_mult (element):
 
 func get_face_direction ():
 
-	if direction == Vector2():
-		var h = -1 if $Sprite.flip_h else 1
-		return Vector2(h, 0)
+	return Vector2(_Sprite.scale.x, 0)
 
-	return direction
+
+func active_global_cooldown():
+
+	if !is_global_cooldown_activated():
+		$GlobalCooldown.start()
+
+
+func is_global_cooldown_activated():
+
+	return !$GlobalCooldown.is_stopped()
+
+
+func get_skill (skill):
+
+	return $SkillList.get_skill(skill)
+
+
+func cast_skill (skill_name):
+
+	var skill = get_skill(skill_name)
+
+	if skill == null: return
+
+	if !is_global_cooldown_activated():
+		print("%s casted" % skill_name)
+		skill.cast()
+		active_global_cooldown()
+
+
+func disable_movement (b = true):
+
+	Controller.disable_movement(b)
